@@ -38,8 +38,8 @@ public class CinemaAPIController {
             Set<Cinema> data = cs.getAllCinemas();
             return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
         } catch (CinemaException ex) {
-            Logger.getLogger(CinemaAPIController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("No hay cinemas", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
         }
     }
     @RequestMapping(value="/{name}")
@@ -48,12 +48,32 @@ public class CinemaAPIController {
             Cinema data= cs.getCinemaByName(name);
             return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
         } catch (CinemaException ex) {
-            Logger.getLogger(CinemaAPIController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("No hay cinemas", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No se encontró ese cinema", HttpStatus.NOT_FOUND);
         }
     }
 
-    
+    @RequestMapping(value="/{name}/{date}")
+    public ResponseEntity<?> manejadorGetRecursoFuncionesXCinemaAndDate(@PathVariable String name,@PathVariable String date){
+
+        try {
+            return new ResponseEntity<>(cs.getFunctionsbyCinemaAndDate(name, date),HttpStatus.ACCEPTED);
+        } catch (CinemaException e) {
+            return new ResponseEntity<>("No hay funciones en esa fecha", HttpStatus.NOT_FOUND);
+
+        }
+    }
+
+    @RequestMapping(value="/{name}/{date}/{moviename}")
+    public ResponseEntity<?> manejadorGetRecursoFuncionesXCinemaDateAndMovie(@PathVariable String name, @PathVariable String date, @PathVariable String moviename){
+
+        try {
+            return new ResponseEntity<>(cs.getMovieByNameAndDate(name,date,moviename),HttpStatus.ACCEPTED);
+        } catch (CinemaException e) {
+            return new ResponseEntity<>("No hay peliculas con ese nombre",HttpStatus.NOT_FOUND);
+
+        }
+    }
+
 
 
 }

@@ -5,13 +5,14 @@
  */
 package edu.eci.arsw.cinema.persistence;
 
-/**
- *
- * @author cristian
- */
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+@ResponseStatus(HttpStatus.NOT_FOUND)
 public class CinemaException extends Exception{
+
+
 
     public CinemaException(String message) {
         super(message);

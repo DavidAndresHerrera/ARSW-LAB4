@@ -39,9 +39,10 @@ public class CinemaServices {
         
     }
     
-    public Set<Cinema> getAllCinemas() throws CinemaException{
+    public Set<Cinema> getAllCinemas() throws CinemaException {
 
         return cps.getAllCinemas();
+
     }
     
     /**
@@ -70,7 +71,7 @@ public class CinemaServices {
         }
     }
     
-    public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) {
+    public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) throws CinemaException {
 
         return cps.getFunctionsbyCinemaAndDate(cinema,date);
     }
@@ -81,5 +82,8 @@ public class CinemaServices {
     public ArrayList<Movie> getBy(String cinema, String date,String gender,  int seats){
         return cinemaFilter.filter(cinema,date,gender,seats,cps);
     }
+    public Movie getMovieByNameAndDate(String cinema,String date,String movie) throws CinemaException{
+        return cps.getMovieByCinemaAndDate(cinema,date,movie);
 
+    }
 }

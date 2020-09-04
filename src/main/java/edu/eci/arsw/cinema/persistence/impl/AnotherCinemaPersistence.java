@@ -2,6 +2,7 @@ package edu.eci.arsw.cinema.persistence.impl;
 
 import edu.eci.arsw.cinema.model.Cinema;
 import edu.eci.arsw.cinema.model.CinemaFunction;
+import edu.eci.arsw.cinema.model.Movie;
 import edu.eci.arsw.cinema.persistence.CinemaException;
 import edu.eci.arsw.cinema.persistence.CinemaPersistenceException;
 import edu.eci.arsw.cinema.persistence.CinemaPersitence;
@@ -44,4 +45,11 @@ public class AnotherCinemaPersistence implements CinemaPersitence {
     public void addCinema(Cinema cinema) {
 
     }
+
+    @Override
+    public Movie getMovieByCinemaAndDate(String cinema, String date, String movie) {
+        return null;
+    }
+
+
 }

@@ -51,5 +51,10 @@ public class AnotherCinemaPersistence implements CinemaPersitence {
         return null;
     }
 
+    @Override
+    public void setFunction(String cinema, CinemaFunction cf) {
+
+    }
+
 
 }

@@ -34,10 +34,7 @@ public class CinemaServices {
     //@Qualifier("byGender")
     @Qualifier("bySeat")
     CinemaFilter cinemaFilter;
-    
-    public void addNewCinema(Cinema c){
-        
-    }
+
     
     public Set<Cinema> getAllCinemas() throws CinemaException {
 
@@ -75,7 +72,7 @@ public class CinemaServices {
 
         return cps.getFunctionsbyCinemaAndDate(cinema,date);
     }
-    public void addCinema(Cinema cinema){
+    public void addCinema(Cinema cinema) throws CinemaException{
         cps.addCinema(cinema);
     }
 
@@ -85,5 +82,8 @@ public class CinemaServices {
     public Movie getMovieByNameAndDate(String cinema,String date,String movie) throws CinemaException{
         return cps.getMovieByCinemaAndDate(cinema,date,movie);
 
+    }
+    public void setFuction(String cinema,CinemaFunction c){
+        cps.setFunction(cinema,c);
     }
 }

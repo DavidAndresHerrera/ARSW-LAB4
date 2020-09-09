@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author cristian
@@ -24,7 +25,7 @@ import java.util.*;
 @Qualifier("inMemoryCinema")
 public class InMemoryCinemaPersistence implements CinemaPersitence {
 
-    private final Map<String, Cinema> cinemas = new HashMap<>();
+    private final ConcurrentHashMap<String, Cinema> cinemas = new ConcurrentHashMap<>();
 
     public InMemoryCinemaPersistence() {
         //load stub data
@@ -116,6 +117,22 @@ public class InMemoryCinemaPersistence implements CinemaPersitence {
             if(c.getMovie().getName().equals(movie)){ return c.getMovie();}
         }
        return null;
+    }
+
+    @Override
+    public void setFunction(String cinema, CinemaFunction cf) {
+        System.out.println("Entre a la función");
+        if(cinemas.containsKey(cinema)){
+            System.out.println("Si estoy validando");
+            List<CinemaFunction> temp = cinemas.get(cinema).getFunctions();
+            for (CinemaFunction f:temp) {
+                if(!(f.getMovie().getName().equals(cf.getMovie().getName()) && f.getDate().equals(cf.getDate()))){
+                    System.out.println("Si encontre pelicula");
+                    cinemas.get(cinema).getFunctions().add(cf);
+                }
+            }
+
+        }
     }
 
 

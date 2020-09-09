@@ -60,4 +60,5 @@ public interface CinemaPersitence {
 
     Movie getMovieByCinemaAndDate(String cinema,String date,String movie);
 
+    void setFunction(String cinema,CinemaFunction cf);
 }
